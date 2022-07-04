@@ -5,7 +5,8 @@
         "baseUrl": "./",
         "paths": {
             "#Lib/": ["./src/lib"],
-            "#Lib/*": ["./src/lib/*"]
+            "#Lib/*": ["./src/lib/*"],
+            "#Controllers/*": ["./server/controllers/*"]
         }
     }
 }
