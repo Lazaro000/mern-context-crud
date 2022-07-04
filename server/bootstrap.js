@@ -2,6 +2,7 @@ import cors from 'cors';
 import { config as dotenvConfig } from 'dotenv';
 import express from 'express';
 import { mongodb } from './database/mongodb.js';
+import router from './routes/posts.routes.js';
 
 dotenvConfig();
 
@@ -22,6 +23,11 @@ export const bootstrap = async () => {
      * * Connection to a temporal database while dev
      */
     await mongodb();
+
+    /**
+     * Routes
+     */
+    app.use('/api', router);
 
     app.listen(process.env.PORT, () =>
         console.log(
