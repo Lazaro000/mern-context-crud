@@ -1,9 +1,10 @@
 {
-    "exclude": ["node_modules"],
+    "exclude": ["node_modules", "**/node_modules", "dist"],
     "compilerOptions": {
         "module": "es6",
         "baseUrl": "./",
         "paths": {
+            "#Lib/": ["./src/lib"],
             "#Lib/*": ["./src/lib/*"]
         }
     }
