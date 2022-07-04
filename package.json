@@ -4,7 +4,7 @@
     "type": "module",
     "description": "This is a MERN Stack Application CRUD with image upload using React Hook useContext",
     "scripts": {
-        "dev": "nodemon src/index.js",
+        "dev": "nodemon server --watch serve",
         "start": "node src/index.js",
         "lint": "eslint src/**/*.js --fix",
         "prettier": "prettier --write .",
