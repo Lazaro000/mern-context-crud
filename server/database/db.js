@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { config as dotenvConfig } from 'node_modules/dotenv/lib/main.js';
+import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig();
 

@@ -13,6 +13,6 @@ export const mongodb = async () => {
 
     mongoose
         .connect(mongoUrl, { connectTimeoutMS: 4000 })
-        .then(() => console.log(`Mongodb conencted at ${mongoUrl}`))
+        .then(() => console.log(`Mongodb connected at ${mongoUrl}`))
         .catch((err) => console.log(err));
 };

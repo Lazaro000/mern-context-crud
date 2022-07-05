@@ -1,7 +1,7 @@
 import cors from 'cors';
 import { config as dotenvConfig } from 'dotenv';
 import express from 'express';
-import { connectDB } from './database/db.js';
+// import { connectDB } from './database/db.js';
 import { mongodb } from './database/tempDb.js';
 import router from './routes/posts.routes.js';
 
