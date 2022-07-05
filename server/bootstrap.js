@@ -1,7 +1,8 @@
 import cors from 'cors';
 import { config as dotenvConfig } from 'dotenv';
 import express from 'express';
-import { mongodb } from './database/mongodb.js';
+import { connectDB } from './database/db.js';
+import { mongodb } from './database/tempDb.js';
 import router from './routes/posts.routes.js';
 
 dotenvConfig();
@@ -15,9 +16,7 @@ export const bootstrap = async () => {
     /**
      * * Normal connection to a database
      */
-    // await mongoose.connect(process.env.MONGODB_URI, {
-    //     connectTimeoutMS: 4000,
-    // });
+    // connectDB();
 
     /**
      * * Connection to a temporal database while dev
