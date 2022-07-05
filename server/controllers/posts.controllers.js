@@ -1,45 +1,69 @@
 import { PostSchema as Post } from '../models/Post.js';
 
 export const getPosts = async (req, res) => {
-    const posts = await Post.find();
-    res.status(200).send(posts);
+    try {
+        const posts = await Post.find();
+
+        return res.status(200).send(posts);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 };
 
 export const getPost = async (req, res) => {
-    const { id } = res.params;
-    const post = await Post.findById(id);
+    try {
+        const { id } = res.params;
+        const post = await Post.findById(id);
 
-    return post
-        ? res.status(302).json(post)
-        : res.status(404).send({ message: 'Not found' });
+        return post
+            ? res.status(302).json(post)
+            : res.status(404).send({ message: 'Not found' });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 };
 
 export const createPost = async (req, res) => {
-    const { title, description } = req.body;
-    const newPost = new Post({ title, description });
+    try {
+        const { title, description } = req.body;
 
-    await newPost.save();
+        const newPost = new Post({ title, description });
 
-    return res.status(201).json(newPost);
+        await newPost.save();
+
+        return res.status(201).json(newPost);
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 };
 
 export const updatePost = async (req, res) => {
-    const { id } = res.params;
-    const { body } = req;
-    const modifiedPost = await Post.findByIdAndUpdate(id, body, {
-        new: true,
-    });
+    try {
+        const { id } = res.params;
+        const { body } = req;
 
-    return modifiedPost
-        ? res.status(200).send(modifiedPost)
-        : res.status(404).send({ message: 'Not found' });
+        const modifiedPost = await Post.findByIdAndUpdate(id, body, {
+            new: true,
+        });
+
+        return modifiedPost
+            ? res.status(200).send(modifiedPost)
+            : res.status(404).send({ message: 'Not found' });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 };
 
 export const deletePost = async (req, res) => {
-    const { id } = res.params;
-    const postRemoved = await Post.findByIdAndDelete(id);
+    try {
+        const { id } = res.params;
 
-    return postRemoved
-        ? res.status(200).send({ message: 'Deleted' })
-        : res.status(404).send({ message: 'Not found' });
+        const postRemoved = await Post.findByIdAndDelete(id);
+
+        return postRemoved
+            ? res.status(200).send({ message: 'Deleted' })
+            : res.status(404).send({ message: 'Not found' });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
 };
