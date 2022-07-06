@@ -1,6 +1,7 @@
 import cors from 'cors';
 import { config as dotenvConfig } from 'dotenv';
 import express from 'express';
+import fileUpload from 'express-fileupload';
 // import { connectDB } from './database/db.js';
 import { mongodb } from './database/tempDb.js';
 import router from './routes/posts.routes.js';
@@ -12,6 +13,12 @@ export const bootstrap = async () => {
 
     app.use(express.json());
     app.use(cors());
+    app.use(
+        fileUpload({
+            tempFileDir: './upload',
+            useTempFiles: true,
+        })
+    );
 
     /**
      * * Normal connection to a database

@@ -1,4 +1,6 @@
 import { PostSchema as Post } from '../models/Post.js';
+import { uploadImage, deleteImage } from '../libs/cloudinary.js';
+import fs from 'fs-extra';
 
 export const getPosts = async (req, res) => {
     try {
@@ -26,8 +28,26 @@ export const getPost = async (req, res) => {
 export const createPost = async (req, res) => {
     try {
         const { title, description } = req.body;
+        const { tempFilePath } = req.files.image;
+        let image;
 
-        const newPost = new Post({ title, description });
+        if (req.files.image) {
+            const result = await uploadImage(tempFilePath);
+
+            console.log(result);
+
+            /**
+             * Eliminar la imagen que se guarda en local
+             */
+            await fs.remove(tempFilePath);
+
+            image = {
+                url: result.secure_url,
+                public_id: result.public_id,
+            };
+        }
+
+        const newPost = new Post({ title, description, image });
 
         await newPost.save();
 
@@ -56,9 +76,12 @@ export const updatePost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
     try {
-        const { id } = res.params;
+        const { id } = req.params;
 
         const postRemoved = await Post.findByIdAndDelete(id);
+
+        if (postRemoved && postRemoved.image.public_id)
+            deleteImage(postRemoved.image.public_id);
 
         return postRemoved
             ? res.status(200).send({ message: 'Deleted' })
