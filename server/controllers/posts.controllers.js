@@ -31,7 +31,7 @@ export const createPost = async (req, res) => {
         const { tempFilePath } = req.files.image;
         let image;
 
-        if (req.files.image) {
+        if (req.files?.image) {
             const result = await uploadImage(tempFilePath);
 
             console.log(result);
