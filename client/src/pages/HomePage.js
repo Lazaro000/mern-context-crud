@@ -1,5 +1,7 @@
 import { usePosts } from '../context/postContext';
 import { VscEmptyWindow } from 'react-icons/vsc';
+import { PostCard } from '../components/PostCard';
+import { Link } from 'react-router-dom';
 
 export const HomePage = () => {
   
@@ -14,11 +16,13 @@ export const HomePage = () => {
 
   return (
     <div className='text-white'>
-      {posts.map(post => {
-        <div key={post._id}>
-          {post.title}
-        </div>
-      })}
+      <Link to='/new'>Create New Post</Link>
+
+      <div className='grid grid-cols-3 gap-2'>
+        {posts.map(post => {
+          <PostCard post={post} id={post._id}/>
+        })}
+      </div>
     </div>
   )
 }
