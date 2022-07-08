@@ -1,9 +1,11 @@
 import toast from "react-hot-toast"
 import { usePosts } from "../context/postContext";
+import { useNavigate } from "react-router-dom";
 
 export const PostCard = ({post}) => {
   const { deletePost } = usePosts();
-  
+  const navigate = useNavigate();
+
   const handleDelete = (id) => {
     toast((t) => {
       <div>
@@ -36,7 +38,10 @@ export const PostCard = ({post}) => {
   }
   
   return (
-    <div className="bg-zinc-800 text-white rounded-sm shadow-black hover: bg-zinc-700 hover:cursor-pointer">
+    <div 
+      className="bg-zinc-800 text-white rounded-sm shadow-black hover: bg-zinc-700 hover:cursor-pointer"
+      onClick={() => {navigate(`/posts/${post._id}`)}}    
+    >
         <div className="px-4 py-7">
             <div className="flex justify-between">
               <h3>{post.title}</h3>
