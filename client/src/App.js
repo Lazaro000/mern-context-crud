@@ -1,6 +1,6 @@
 import React from 'react'
 import { PostForm, HomePage, NotFoundPage } from './pages';
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { PostProvider } from './context/postContext';
 import { Toaster } from 'react-hot-toast';
 

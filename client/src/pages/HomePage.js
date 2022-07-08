@@ -16,7 +16,12 @@ export const HomePage = () => {
 
   return (
     <div className='text-white'>
-      <Link to='/new'>Create New Post</Link>
+      <header className='flex justify-between py-4'>
+        <h1 className='text-2xl text-gray-300 font-bold'>
+          Posts ({posts.length})
+        </h1>
+        <Link to='/new' className='px-3 py-4 bg-indigo-500 hover:bg-indigo-600 text-white'>Create New Post</Link>
+      </header>
 
       <div className='grid grid-cols-3 gap-2'>
         {posts.map(post => {

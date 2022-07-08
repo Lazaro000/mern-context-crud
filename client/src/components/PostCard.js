@@ -42,16 +42,24 @@ export const PostCard = ({post}) => {
       className="bg-zinc-800 text-white rounded-sm shadow-black hover: bg-zinc-700 hover:cursor-pointer"
       onClick={() => {navigate(`/posts/${post._id}`)}}    
     >
-        <div className="px-4 py-7">
-            <div className="flex justify-between">
-              <h3>{post.title}</h3>
-              <button className="bg-red-600 text-sm px-2 py-2 rounded-sm"
-              onClick={() => handleDelete(post._id)}>
-                  Delete
-              </button>
-            </div>
-            <p>{post.description}</p>
+      <div className="px-4 py-7">
+        <div className="flex justify-between">
+          <h3>{post.title}</h3>
+          <button 
+            className="bg-red-600 hover:bg-red-500 text-sm px-2 py-2 rounded-sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDelete(post._id);
+            }}
+          >
+              Delete
+          </button>
         </div>
+        <p>{post.description}</p>
+      </div>
+      <div>
+        {post.image && <img src={post.image.url} alt={post.title} className='object-cover h-96 w-full' />}
+      </div>
     </div>
   )
 }
