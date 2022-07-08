@@ -15,7 +15,7 @@ The frontend will be served from the backend in production, but in development i
 
 ## Cloduinary
 
-This application uses Cloudinary as Image Hosting, so you need to provide the following environment variables. You can find this on your Cloudinary's profile
+This application uses [Cloudinary](https://cloudinary.com/users/login) as Image Hosting, so you need to provide the following environment variables. You can find this on your Cloudinary's profile
 
 -   CLOUD_NAME
 -   API_KEY
